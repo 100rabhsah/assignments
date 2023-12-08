@@ -5,7 +5,22 @@
 */
 
 function isAnagram(str1, str2) {
+  function countCharacters(str) {
+    const charCount = {};
+    for (let char of str) {
+      if (char !== ' ') {
+        charCount[char] = (charCount[char] || 0) + 1;
+      }
+    }
+    return charCount;
+  }
 
+  const charCount1 = countCharacters(str1.toLowerCase());
+  const charCount2 = countCharacters(str2.toLowerCase());
+
+  // Check if both strings have the same character counts
+  return Object.keys(charCount1).length === Object.keys(charCount2).length &&
+    Object.keys(charCount1).every(char => charCount1[char] === charCount2[char]);
 }
 
 module.exports = isAnagram;
